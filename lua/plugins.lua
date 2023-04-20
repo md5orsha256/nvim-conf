@@ -61,6 +61,8 @@ require('packer').startup(function(use)
 
   use 'rinx/nvim-minimap'  -- minimap
 
+  use "lukas-reineke/indent-blankline.nvim"  -- indent lines and blocks
+
 
 
   -- ---------------------------------------------------------------------------
@@ -100,6 +102,11 @@ require('packer').startup(function(use)
   -- ---------------------------------------------------------------------------
   -- -- LSP ADN AUTOCOMPLETE
   -- ---------------------------------------------------------------------------
+
+  use {  --  An incremental parsing system for programming tools 
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
 
   use {
     "williamboman/mason.nvim",
