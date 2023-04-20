@@ -2,6 +2,11 @@ local map = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
 
 -- -----------------------------------------------------------------------------
+-- GENERAL
+-- -----------------------------------------------------------------------------
+
+
+-- -----------------------------------------------------------------------------
 -- NAVIGATION
 -- -----------------------------------------------------------------------------
 
@@ -55,3 +60,12 @@ map('i', '<C-/>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
 -- -----------------------------------------------------------------------------
 
 map('n', '<C-p>', '<cmd>Telescope<cr>', default_opts)
+
+
+map('n', 'n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], default_opts)
+map('n', 'N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], default_opts)
+map('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], default_opts)
+map('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], default_opts)
+map('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], default_opts)
+map('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], default_opts)
+map('n', '<Leader>l', '<Cmd>noh<CR>', default_opts)

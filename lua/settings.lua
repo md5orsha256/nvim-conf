@@ -167,8 +167,8 @@ require("bufferline").setup {  -- TABS CONFIG
 require('nvim-cursorline').setup {  -- cursorline
   cursorline = {
     enable = true,
-    timeout = 300,
-    number = false,
+    timeout = 100,
+    number = true,
   },
   cursorword = {
     enable = true,
@@ -214,6 +214,13 @@ require("indent_blankline").setup {
     show_trailing_blankline_indent = false,
 }
 
+-- Scrollbar
+require("scrollbar").setup{}
+--require("scrollbar").setup{
+--  handle = {
+--    color = "#4d4d4d",
+--  },
+--}
 
 -- -----------------------------------------------------------------------------
 -- EDITOR
@@ -235,6 +242,12 @@ require"surround".setup {
 cmd [[
   autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 ]]
+
+
+--  Hlsearch Lens for Neovim
+require("scrollbar.handlers.search").setup({
+  calm_down = true,
+})
 
 
 -- -----------------------------------------------------------------------------

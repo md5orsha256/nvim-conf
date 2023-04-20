@@ -63,7 +63,7 @@ require('packer').startup(function(use)
 
   use "lukas-reineke/indent-blankline.nvim"  -- indent lines and blocks
 
-
+  use "petertriho/nvim-scrollbar"  -- surprise-surprise, scrollbar
 
   -- ---------------------------------------------------------------------------
   -- -- EDITOR
@@ -87,6 +87,7 @@ require('packer').startup(function(use)
 
   use "gpanders/editorconfig.nvim"  --  EditorConfig plugin for Neovim
 
+  use 'kevinhwang91/nvim-hlslens'  --  Hlsearch Lens for Neovim 
 
   -- ---------------------------------------------------------------------------
   -- -- GIT
