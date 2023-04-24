@@ -1,5 +1,4 @@
 local cmd = vim.cmd             -- execute Vim commands
-local exec = vim.api.nvim_exec  -- execute Vimscript
 local g = vim.g                 -- global variables
 local opt = vim.opt             -- global/buffer/windows-scoped options
 
@@ -365,7 +364,40 @@ require('mason-lspconfig').setup_handlers({
   end,
 })
 
--- nvim-cmp supports additional completion capabilities
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+lspconfig.pyright.setup{}
+lspconfig.dockerls.setup{}
+lspconfig.docker_compose_language_service.setup{}
+lspconfig.ruff_lsp.setup{
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    }
+  }
+}
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 vim.o.completeopt = 'menuone,noselect'
@@ -397,15 +429,7 @@ cmp.setup {
 
   -- TODO: Transfer mappings to `keymap.lua`
   mapping = {
-    ['<C-g>'] = cmp.mapping(function(fallback)
-        vim.api.nvim_feedkeys(
-          vim.fn['copilot#Accept'](
-            vim.api.nvim_replace_termcodes('<Tab>', true, true, true)
-          ), 'n', true
-        )
-    end),
-
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<S-down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -415,7 +439,7 @@ cmp.setup {
       end
     end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    ["<S-up>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -446,6 +470,7 @@ tabnine:setup({
   };
   show_prediction_strength = false;
 })
+
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)

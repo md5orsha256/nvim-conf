@@ -52,7 +52,7 @@ map('n', '<F18>', '<cmd>lua require("renamer").rename()<cr>', default_opts)
 map('v', '<F18>', '<cmd>lua require("renamer").rename()<cr>', default_opts)
 
 
-map('i', '<C-/>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+map('i', '<S-right>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
 
 
 -- -----------------------------------------------------------------------------
