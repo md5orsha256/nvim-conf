@@ -1,6 +1,19 @@
 local map = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
 
+local nmap = function(key, cmd, opts)
+  map('n', key, cmd, opts or default_opts)
+end
+
+local imap = function(key, cmd, opts)
+  map('i', key, cmd, opts or default_opts)
+end
+
+local vmap = function(key, cmd, opts)
+  map('v', key, cmd, opts or default_opts)
+end
+
+
 -- -----------------------------------------------------------------------------
 -- GENERAL
 -- -----------------------------------------------------------------------------
@@ -35,37 +48,38 @@ for buffer_number = 1, 9 do
 end
 
 -- t + Tab - open next buffer
-map('n', 't<Tab>', '<CMD>BufferLineCycleNext<CR>', default_opts)
+nmap('t<Tab>', '<CMD>BufferLineCycleNext<CR>')
 
 
 -- SIDE BAR NAVIGATION
 -- t + s - open side bar
-map('n', 'ts', '<CMD>NvimTreeToggle<CR>', default_opts)
+nmap('ts', '<CMD>NvimTreeToggle<CR>')
 
 -- -----------------------------------------------------------------------------
 -- EDIT
 -- -----------------------------------------------------------------------------
 
 -- RENAME ON SHIFT + F6
-map('i', '<F18>', '<cmd>lua require("renamer").rename()<cr>', default_opts)
-map('n', '<F18>', '<cmd>lua require("renamer").rename()<cr>', default_opts)
-map('v', '<F18>', '<cmd>lua require("renamer").rename()<cr>', default_opts)
+imap('<F18>', '<cmd>lua require("renamer").rename()<cr>')
+nmap('<F18>', '<cmd>lua require("renamer").rename()<cr>')
+vmap('<F18>', '<cmd>lua require("renamer").rename()<cr>')
 
 
-map('i', '<S-right>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+imap('<S-right>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
 
 
 -- -----------------------------------------------------------------------------
 -- SEARCH
 -- -----------------------------------------------------------------------------
 
-map('n', '<C-p>', '<cmd>Telescope<cr>', default_opts)
+nmap('<C-p>', '<cmd>Telescope find_files<cr>')
+nmap("<C-S-p>", "<cmd>Telescope live_grep<cr>")
 
 
-map('n', 'n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], default_opts)
-map('n', 'N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], default_opts)
-map('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], default_opts)
-map('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], default_opts)
-map('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], default_opts)
-map('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], default_opts)
-map('n', '<Leader>l', '<Cmd>noh<CR>', default_opts)
+nmap('n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]])
+nmap('N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]])
+nmap('*', [[*<Cmd>lua require('hlslens').start()<CR>]])
+nmap('#', [[#<Cmd>lua require('hlslens').start()<CR>]])
+nmap('g*', [[g*<Cmd>lua require('hlslens').start()<CR>]])
+nmap('g#', [[g#<Cmd>lua require('hlslens').start()<CR>]])
+nmap('<Leader>l', '<Cmd>noh<CR>')
