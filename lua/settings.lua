@@ -9,6 +9,9 @@ local opt = vim.opt             -- global/buffer/windows-scoped options
 -- -----------------------------------------------------------------------------
 opt.termguicolors = true        --  24-bit RGB colors
 
+vim.wo.number = true
+vim.wo.relativenumber = true
+
 local colors = {
   dirty_green = "#637958",
   subtle_gray = "#504f4c",
@@ -198,20 +201,18 @@ vim.cmd [[highlight IndentBlanklineIndent4 guifg=#304e52 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent5 guifg=#393f61 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent6 guifg=#503b57 gui=nocombine]]
 
-require("indent_blankline").setup {
-    show_end_of_line = true,
-    space_char_blankline = " ",
-    show_current_context_start = true,
-    show_current_context = true,
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
+local highlight = {
+	"IndentBlanklineIndent1",
+	"IndentBlanklineIndent2",
 	"IndentBlanklineIndent3",
 	"IndentBlanklineIndent4",
 	"IndentBlanklineIndent5",
 	"IndentBlanklineIndent6",
-    },
-    show_trailing_blankline_indent = false,
+}
+
+require("ibl").setup {
+  scope = {enabled = true, highlight = highlight},
+  indent = {char = {"▏", "▎", "▍", "▌", "▋", "▊", "▉"}, highlight = highlight},
 }
 
 -- Scrollbar
