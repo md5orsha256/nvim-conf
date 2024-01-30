@@ -23,13 +23,6 @@ end
 -- NAVIGATION
 -- -----------------------------------------------------------------------------
 
--- DISABLE ARROWS
-map('', '<up>', ':echoe "Use k"<CR>', {noremap = true, silent = false})
-map('', '<down>', ':echoe "Use j"<CR>', {noremap = true, silent = false})
-map('', '<left>', ':echoe "Use h"<CR>', {noremap = true, silent = false})
-map('', '<right>', ':echoe "Use l"<CR>', {noremap = true, silent = false})
-
-
 -- BUFFER NAVIGATION
 local get_map_keybinding_for_buffer_number = function(
   buffer_number,  -- integer
