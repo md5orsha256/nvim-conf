@@ -47,6 +47,7 @@ nmap('t<Tab>', '<CMD>BufferLineCycleNext<CR>')
 -- SIDE BAR NAVIGATION
 -- t + s - open side bar
 nmap('ts', '<CMD>NvimTreeToggle<CR>')
+nmap("tw", "<CMD>NvimTreeFocus<CR>")
 
 -- -----------------------------------------------------------------------------
 -- EDIT
