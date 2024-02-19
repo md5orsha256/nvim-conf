@@ -74,8 +74,6 @@ require('packer').startup(function(use)
     config = function() require('Comment').setup{} end,
   }
 
-  use "ur4ltz/surround.nvim"  -- surround on `s` key
-
   use 'cohama/lexima.vim'  -- Auto close parentheses and repeat by dot dot dot...
 
   use {  -- VS Code-like renaming UI for Neovim, writen in Lua.
