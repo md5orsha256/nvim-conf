@@ -87,7 +87,7 @@ require('nvim-tree').setup {  -- SIDEBAR NAVIGATION CONFIG
     },
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
     custom = {},
     exclude = {},
   },
